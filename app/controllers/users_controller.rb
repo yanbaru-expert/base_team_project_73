@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     User.create(user_params)
   end
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
     @user = User.find(params[:id])
   end
@@ -20,16 +24,13 @@ class UsersController < ApplicationController
     user.update(user_params)
   end
 
-  def show
-    @user = User.find(params[:id])
-  end
-
   def destroy
     user = User.find(params[:id])
     user.destroy
   end
 
     private
+
     def user_params
       params.require(:user).permit(:name, :age)
     end
